@@ -13,7 +13,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:5000",
+        target: "https://book-review-platform-o5nr.onrender.com",  
+        // "http://localhost:5000"
         changeOrigin: true,
       },
     },
