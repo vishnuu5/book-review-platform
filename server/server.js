@@ -47,10 +47,7 @@ app.use((err, req, res, next) => {
 });
 
 // Connect to MongoDB and start server
-const port = process.env.PORT || 10000;
-// app.listen(port, () => {
-//   console.log(`Server is running on port ${port}`);
-// });
+const PORT = process.env.PORT || 10000;
 const MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost:27017/book-review-platform";
 
@@ -58,8 +55,8 @@ mongoose
   .connect(MONGODB_URI)
   .then(() => {
     console.log("Connected to MongoDB");
-    app.listen(port, () => {
-      console.log(`Server running on port ${port}`);
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
     });
   })
   .catch((err) => {
