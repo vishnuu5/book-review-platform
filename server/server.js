@@ -29,22 +29,22 @@ app.use("/api/books", bookRoutes);
 app.use("/api/reviews", reviewRoutes);
 
 // Serve static assets in production
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "../client/dist")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../client/dist")));
 
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "../client/dist", "index.html"));
-//   });
-// }
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client/dist", "index.html"));
+  });
+}
 
 // Error handling middleware
-// app.use((err, req, res, next) => {
-//   console.error(err.stack);
-//   res.status(500).json({
-//     message: err.message || "Something went wrong on the server",
-//     stack: process.env.NODE_ENV === "production" ? "🥞" : err.stack,
-//   });
-// });
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    message: err.message || "Something went wrong on the server",
+    stack: process.env.NODE_ENV === "production" ? "🥞" : err.stack,
+  });
+});
 
 // Connect to MongoDB and start server
 const port = process.env.PORT || 10000;
@@ -58,8 +58,8 @@ mongoose
   .connect(MONGODB_URI)
   .then(() => {
     console.log("Connected to MongoDB");
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
     });
   })
   .catch((err) => {
