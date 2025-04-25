@@ -3,7 +3,7 @@ services:
     name: book-review-api
     env: node
     buildCommand: cd server && npm install && npm run build
-    startCommand: cd server && npm start
+    startCommand: cd server && npm run dev
     envVars:
       - key: NODE_ENV
         value: production
