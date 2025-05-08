@@ -70,18 +70,18 @@ api.interceptors.response.use(
 
 // Book service
 export const bookService = {
-  getBooks: (params) => api.get("/books", { params }),
+  getBooks: (params) => api.get("/books/", { params }),
   getBook: (id) => api.get(`/books/${id}`),
-  addBook: (bookData) => api.post("/books", bookData),
+  addBook: (bookData) => api.post("/books/", bookData),
   updateBook: (id, bookData) => api.put(`/books/${id}`, bookData),
   deleteBook: (id) => api.delete(`/books/${id}`),
 };
 
 // Review service
 export const reviewService = {
-  getReviews: (bookId) => api.get("/reviews", { params: { bookId } }),
-  getUserReviews: (userId) => api.get("/reviews", { params: { userId } }),
-  addReview: (reviewData) => api.post("/reviews", reviewData),
+  getReviews: (bookId) => api.get("/reviews/", { params: { bookId } }),
+  getUserReviews: (userId) => api.get("/reviews/", { params: { userId } }),
+  addReview: (reviewData) => api.post("/reviews/", reviewData),
   updateReview: (id, reviewData) => api.put(`/reviews/${id}`, reviewData),
   deleteReview: (id) => api.delete(`/reviews/${id}`),
   refineReview: (content) => api.post("/reviews/refine", { content }),
